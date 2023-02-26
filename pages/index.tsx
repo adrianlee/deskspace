@@ -1,8 +1,14 @@
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import Toolbar from '../components/Toolbar';
+import { BearState, useDeskspaceStore } from '../hooks/useDeskspaceStore';
 
 export default function Home() {
+  const bears = useDeskspaceStore((state: BearState) => state.bears);
+  const increasePopulation = useDeskspaceStore(
+    (state) => state.increasePopulation
+  );
+
   const [startPos, setStartPos] = useState(null);
   const [endPos, setEndPos] = useState(null);
 
@@ -59,6 +65,7 @@ export default function Home() {
 
       <div className="fixed p-10">
         <Toolbar />
+        <button onClick={increasePopulation}>one up</button>
       </div>
 
       <main
